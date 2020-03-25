@@ -14,6 +14,7 @@ using namespace std;
 TEST_CASE("Test - empty word") {
     string text = "Hello World";
         CHECK_THROWS(find(text, ""));
+        CHECK_THROWS(find(text, "  "));
 }
 
 TEST_CASE("Test - empty text") {
@@ -25,7 +26,6 @@ TEST_CASE("Test - not found word") {
     string text = "Hello World";
         CHECK_THROWS(find(text, "bye"));
         CHECK_THROWS(find(text, "ballet"));
-
 }
 
 TEST_CASE("Test - null word") {
@@ -42,7 +42,6 @@ TEST_CASE("Test - word with space") {
     string text = "ab cd";
         CHECK_THROWS(find(text, "a b"));
         CHECK_THROWS(find(text, "c d"));
-
 }
 
 TEST_CASE("Test - double word") {
@@ -70,6 +69,13 @@ TEST_CASE("Test - spaces before or after the word") {
             CHECK(find(text, "   There") == string("There"));
             CHECK(find(text, "feuble  ") == string("people"));
             CHECK(find(text, " thyz ") == string("this"));
+}
+
+TEST_CASE("Test - spaces in the text") {
+    string text = "There      are      two    kinds  of   people    in    this    world";
+            CHECK(find(text, "There") == string("There"));
+            CHECK(find(text, "feuble") == string("people"));
+            CHECK(find(text, "  thyz") == string("this"));
 }
 
 /////////////////Test of replaces between c <--> k <--> q /////////////////
