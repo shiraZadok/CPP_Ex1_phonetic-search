@@ -10,5 +10,5 @@ using namespace std;
 
 std::string phonetic::find(std::string text, std::string word) {
     cout << "Just try" << endl;
-    return text;
+    return word;
 }
