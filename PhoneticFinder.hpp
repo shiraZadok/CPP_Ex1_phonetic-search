@@ -6,5 +6,7 @@
 
 namespace phonetic{
     std::string find(std::string text,std::string word);
+    bool ifLegalChar(char cword,char ctxt);
+    std::string checkForException(std::string text,std::string word);
 }
 

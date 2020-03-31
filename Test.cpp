@@ -282,6 +282,6 @@ TEST_CASE("Test replacement of lower-case and upper-case") {
 
 TEST_CASE("Mary Poppins test") {
     string text = "Try this word supercalifragilisticexpialidocious";
-            CHECK(find(text, "SoFerCalyBrajylIzdizexfialYtuciuos") == string("supercalifragilisticexpialidocious"));
+            CHECK(find(text, "SoFerCalyBrajylIzdicexfialYtuciuos") == string("supercalifragilisticexpialidocious"));
 }
 
