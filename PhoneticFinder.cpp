@@ -1,5 +1,6 @@
 //
 // Created by shira on 24/03/2020.
+//#1 - https://www.fluentcpp.com/2017/04/21/how-to-split-a-string-in-c/
 //
 
 #include <iostream>
@@ -10,21 +11,25 @@
 #include "PhoneticFinder.hpp"
 using namespace std;
 
-
+/**
+ * This function looking for the word in the text with the agreed condition
+ * @param text
+ * @param word
+ * @return if found = return the word from the text
+ */
 std::string phonetic::find(std::string text, std::string word) {
     word = checkForException(text, word);
     int indexT =0;
     int indexW =0;
     bool ans;
 
+    // The following two lines from: #1
     istringstream streamText(text);
     vector<string> splitText(istream_iterator<string>{streamText},istream_iterator<string>());
     for (int i =0;i<splitText.size();i++){
         if(splitText[i].size()==word.size()){
             while(indexW<word.size()){
-                char cT = splitText[i].at(indexT);
-                char cW = word.at(indexW);
-                ans = ifLegalChar(word.at(indexW++),splitText[i].at(indexT++));
+                ans = ifLegalChar(word.at(indexW++),splitText[i].at(indexT++)); //check for any char in the words if legal.
                 if(!ans){
                     indexT=0;
                     indexW=0;
@@ -38,6 +43,13 @@ std::string phonetic::find(std::string text, std::string word) {
     throw runtime_error("The word didn't found: " + word);
 }
 
+
+/**
+ * This function check for illegal cases.
+ * @param text to check
+ * @param word to check
+ * @return the word without spaces (if any)
+ */
 std::string phonetic::checkForException(std::string text,std::string word){
     //--check for illegal case--
     if(text=="") throw runtime_error("The text empty: " + text);
