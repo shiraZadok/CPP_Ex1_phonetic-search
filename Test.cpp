@@ -28,15 +28,15 @@ TEST_CASE("Test - not found word") {
         CHECK_THROWS(find(text, "ballet"));
 }
 
-TEST_CASE("Test - null word") {
-    string text = "Hello World";
-        CHECK_THROWS(find(text, NULL));
-}
+//TEST_CASE("Test - null word") {
+//    string text = "Hello World";
+//        CHECK_THROWS(find(text, NULL));
+//}
 
-TEST_CASE("Test - null text") {
-    string text = NULL;
-        CHECK_THROWS(find(text, "hi"));
-}
+//TEST_CASE("Test - null text") {
+//    string text = NULL;
+//        CHECK_THROWS(find(text, "hi"));
+//}
 
 TEST_CASE("Test - word with space") {
     string text = "ab cd";

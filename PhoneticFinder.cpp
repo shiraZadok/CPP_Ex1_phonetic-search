@@ -4,6 +4,9 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
+#include <bits/stdc++.h>
+
 #include "PhoneticFinder.hpp"
 using namespace std;
 
@@ -12,29 +15,32 @@ std::string phonetic::find(std::string text, std::string word) {
     word = checkForException(text, word);
     int indexT =0;
     int indexW =0;
-    std::string wordFromText;
-    while(indexT<text.length()){
-        while (text.at(indexT)== ' ') indexT++;
-        while(word.length()>indexW){
-            bool ans = ifLegalChar(word.at(indexW++),text.at(indexT));
-            if(ans) wordFromText+=text.at(indexT++);
-            else break;
-        }
-        if((indexW<word.length())||(indexW=word.length() && text.at(indexT)!=' ')) {
-            indexW=0;
-            wordFromText.erase();
-            while(indexT< text.length() && text.at(indexT) != ' ') indexT++;
-        }
-        else {
-            return wordFromText;
+    bool ans;
+
+    istringstream streamText(text);
+    vector<string> splitText(istream_iterator<string>{streamText},istream_iterator<string>());
+    for (int i =0;i<splitText.size();i++){
+        if(splitText[i].size()==word.size()){
+            while(indexW<word.size()){
+                char cT = splitText[i].at(indexT);
+                char cW = word.at(indexW);
+                ans = ifLegalChar(word.at(indexW++),splitText[i].at(indexT++));
+                if(!ans){
+                    indexT=0;
+                    indexW=0;
+                    break;
+                }
+            }
+            if(ans)
+                return splitText[i];
         }
     }
-    throw "The word didn't found";
+    throw runtime_error("The word didn't found: " + word);
 }
 
 std::string phonetic::checkForException(std::string text,std::string word){
     //--check for illegal case--
-    if(text=="") throw "The text empty";
+    if(text=="") throw runtime_error("The text empty: " + text);
 
     //if there is space inside the word
     string wordWithoutSpaces;
@@ -46,7 +52,7 @@ std::string phonetic::checkForException(std::string text,std::string word){
             if (!foundEnd)
                 wordWithoutSpaces += c;
             else
-                throw ("The word illegal - contain space inside the word");
+                throw runtime_error("The word illegal - contain space inside the word: " + word);
         }
         else {
             if (foundStart)
@@ -55,7 +61,7 @@ std::string phonetic::checkForException(std::string text,std::string word){
     }
 
     //if the word contain only space equals to empty word
-    if(!foundStart) throw "The word is empty";
+    if(!foundStart) throw runtime_error("The word is empty: " + word);
     return wordWithoutSpaces;
 }
 
@@ -111,4 +117,3 @@ bool phonetic::ifLegalChar(char cword,char ctxt){
             return ctxt==cword? true: false;
     }
 }
-
