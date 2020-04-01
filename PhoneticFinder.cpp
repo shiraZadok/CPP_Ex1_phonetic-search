@@ -78,7 +78,6 @@ std::string phonetic::checkForException(std::string text,std::string word){
 }
 
 
-
 /**
  * This function check if the char from the word and the char from the text it legal.
  * @param cword char from the word to check
@@ -88,44 +87,13 @@ std::string phonetic::checkForException(std::string text,std::string word){
 bool phonetic::ifLegalChar(char cword,char ctxt){
     cword = tolower(cword); //convert to lower case because the two cases are legal.
     ctxt = tolower(ctxt); //convert to lower case because the two cases are legal.
-    switch (cword){
-        case ('v'):
-            return (ctxt=='v' || ctxt=='w')? true: false;
-        case ('w'):
-            return (ctxt=='v' || ctxt=='w')? true: false;
-        case ('g'):
-            return (ctxt=='g' || ctxt=='j')? true: false;
-        case ('j'):
-            return (ctxt=='g' || ctxt=='j')? true: false;
-        case ('s'):
-            return (ctxt=='s' || ctxt=='z')? true: false;
-        case ('z'):
-            return (ctxt=='s' || ctxt=='z')? true: false;
-        case ('d'):
-            return (ctxt=='d' || ctxt=='t')? true: false;
-        case ('t'):
-            return (ctxt=='d' || ctxt=='t')? true: false;
-        case ('o'):
-            return (ctxt=='o' || ctxt=='u')? true: false;
-        case ('u'):
-            return (ctxt=='o' || ctxt=='u')? true: false;
-        case ('i'):
-            return (ctxt=='i' || ctxt=='y')? true: false;
-        case ('y'):
-            return (ctxt=='i' || ctxt=='y')? true: false;
-        case ('b'):
-            return (ctxt=='b' || ctxt=='f' ||ctxt=='p')? true: false;
-        case ('f'):
-            return (ctxt=='b' || ctxt=='f' ||ctxt=='p')? true: false;
-        case ('p'):
-            return (ctxt=='b' || ctxt=='f' ||ctxt=='p')? true: false;
-        case ('c'):
-            return (ctxt=='c' || ctxt=='k' || ctxt=='q')? true: false;
-        case ('k'):
-            return (ctxt=='c' || ctxt=='k' || ctxt=='q')? true: false;
-        case ('q'):
-            return (ctxt=='c' || ctxt=='k' || ctxt=='q')? true: false;
-        default:
-            return ctxt==cword? true: false;
-    }
+    if((cword=='v' || cword=='w')&&(ctxt=='v' || ctxt=='w'))return true;
+    if((cword=='g' || cword=='j')&&(ctxt=='g' || ctxt=='j'))return true;
+    if((cword=='s' || cword=='z')&&(ctxt=='s' || ctxt=='z'))return true;
+    if((cword=='d' || cword=='t')&&(ctxt=='d' || ctxt=='t'))return true;
+    if((cword=='o' || cword=='u')&&(ctxt=='o' || ctxt=='u'))return true;
+    if((cword=='i' || cword=='y')&&(ctxt=='i' || ctxt=='y'))return true;
+    if((cword=='b' || cword=='f' ||cword=='p')&&(ctxt=='b' || ctxt=='f' ||ctxt=='p'))return true;
+    if((cword=='c' || cword=='k' || cword=='q')&&(ctxt=='c' || ctxt=='k' || ctxt=='q'))return true;
+    return ctxt==cword ? true: false;
 }
