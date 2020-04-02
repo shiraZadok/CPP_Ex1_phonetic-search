@@ -29,7 +29,8 @@ std::string phonetic::find(std::string text, std::string word) {
     for (int i =0;i<splitText.size();i++){
         if(splitText[i].size()==word.size()){
             while(indexW<word.size()){
-                ans = ifLegalChar(word.at(indexW++),splitText[i].at(indexT++)); //check for any char in the words if legal.
+                //check for any char in the words if legal.
+                ans = ifLegalChar(word.at(indexW++),splitText[i].at(indexT++));
                 if(!ans){
                     indexT=0;
                     indexW=0;
