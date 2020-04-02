@@ -79,7 +79,7 @@ std::string phonetic::checkForException(std::string text,std::string word){
 
 
 /**
- * This function check if the char from the word and the char from the text it legal.
+ * This function check if the char from the word and the char from the text legal.
  * @param cword char from the word to check
  * @param ctxt char from the text to check
  * @return true if legat else false.
